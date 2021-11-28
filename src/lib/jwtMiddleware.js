@@ -1,5 +1,6 @@
 import jwt, { decode } from 'jsonwebtoken';
 import User from '../models/user';
+import path from 'path';
 
 const jwtMiddleware = async (ctx, next) => {
   const token = ctx.cookies.get('access_token');
@@ -20,7 +21,6 @@ const jwtMiddleware = async (ctx, next) => {
         httpOnly: true,
       });
     }
-    console.log(decoded);
     return next();
   } catch (e) {
     // 토큰 검증 실패
